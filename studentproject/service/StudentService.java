@@ -1,0 +1,64 @@
+package com.practice.studentproject.service;
+
+import com.practice.studentproject.model.Student;
+import com.practice.studentproject.repository.StudentRepository;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+@Transactional
+public class StudentService {
+
+    @Autowired
+    StudentRepository studentRepository;
+
+    //for CREATE
+    public Student addStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+    //for READ
+    public Iterable<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    public Optional<Student> getStudentById(long id) {
+        return studentRepository.findById(id);
+    }
+
+    //for UPDATE
+    public Student updateStudentById(long id, Student student) {
+        if (!studentRepository.existsById(id)) { // guard class
+            return null;
+        }
+        Student prevStudent = studentRepository.findById(id).get();
+        if (student.getName() != null) {
+            prevStudent.setName(student.getName());
+        }
+        if (student.getGrade() != null) {
+            prevStudent.setGrade(student.getGrade());
+        }
+        if (student.getSchool() != null) {
+            prevStudent.setSchool(student.getSchool());
+        }
+        System.out.println("update successful");
+
+        return student;
+    }
+
+
+    public String deleteStudentById(long id) {
+        if (studentRepository.existsById(id)) {
+            studentRepository.deleteById(id);
+            return "student removed from database";
+        }
+        return "error while trying to remove student from database";
+    }
+
+    public void deleteAllStudents() {
+        studentRepository.deleteAll();
+    }
+}

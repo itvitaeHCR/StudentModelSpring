@@ -15,13 +15,13 @@ public class StudentController {
     StudentService studentService;
 
     //Create
-    @PostMapping("/new/")
+    @PostMapping("/new")
     public Student newStudent(@RequestBody Student student) {
         return studentService.addStudent(student);
     }
 
     //Read
-    @GetMapping("/all/")
+    @GetMapping("/all")
     public Iterable<Student> getAllStudents() {
         return studentService.getAllStudents();
     }

@@ -1,5 +1,7 @@
 package com.practice.studentproject.controller;
 
+import com.practice.studentproject.model.Course;
+import com.practice.studentproject.model.School;
 import com.practice.studentproject.model.Student;
 import com.practice.studentproject.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +34,18 @@ public class StudentController {
     }
 
     //Update
+        // edit student
     @PutMapping("/{id}")
     public Student updateStudentById(@PathVariable(value = "id") long id, @RequestBody Student student) {
         return studentService.updateStudentById(id, student);
     }
+
+        // add course to student                                                                        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    @PutMapping("/{id}/newcourse")
+    public Student addCourseToStudent(@PathVariable(value = "id") long id, @RequestBody Course course) {
+        //return studentService.addCourseToStudent(id, course);
+    }
+
 
     //Delete
     @DeleteMapping("/{id}")

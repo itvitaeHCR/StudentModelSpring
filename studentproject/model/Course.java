@@ -15,7 +15,7 @@ public class Course {
     private Integer credits;
 
     // RELATIONSHIP - owned side
-    @ManyToMany(mappedBy = "students")
+    @ManyToMany(mappedBy = "courses")
     private List<Student> students = new ArrayList<>();
 
     // CONSTRUCTORS

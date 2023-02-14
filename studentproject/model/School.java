@@ -12,13 +12,28 @@ public class School {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private Integer nr_of_students;
+
     private String city;
 
     // RELATIONSHIP one-to-many
     @OneToMany
     @JsonManagedReference
     private List<Student> students = new ArrayList<>();
+    private Integer nr_of_students = students.size();
+
+
+    // CONSTRUCTORS
+
+    public School() {
+    }
+
+    public School(String name, String city, List<Student> students, Integer nr_of_students) {
+        this.name = name;
+        this.city = city;
+        this.students = students;
+        this.nr_of_students = nr_of_students;
+    }
+
 
     // GETTERS AND SETTERS
 

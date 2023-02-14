@@ -1,5 +1,7 @@
 package com.practice.studentproject.service;
 
+import com.practice.studentproject.model.Course;
+import com.practice.studentproject.model.School;
 import com.practice.studentproject.model.Student;
 import com.practice.studentproject.repository.StudentRepository;
 import jakarta.transaction.Transactional;
@@ -61,4 +63,14 @@ public class StudentService {
     public void deleteAllStudents() {
         studentRepository.deleteAll();
     }
+
+
+
+
+    // UPDATE from OTHER
+    public Student addStudentToSchool(School school, Student student) {
+        student.setSchool(school);
+        return studentRepository.save(student);
+    }
+
 }
